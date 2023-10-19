@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: book-service
+
+  config:
+    import: "configserver:http://localhost:8088"
+
