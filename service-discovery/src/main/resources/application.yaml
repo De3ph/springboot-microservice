@@ -1,15 +1,6 @@
-server:
-  port: 8761
-
 spring:
   application:
     name: service-discovery
 
-eureka:
-  instance:
-    hostname: localhost
-  client:
-    register-with-eureka: false
-    fetch-registry: false
-    service-url:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  config:
+    import: "configserver:http://localhost:8088"
