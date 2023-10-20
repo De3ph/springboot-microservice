@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class BookService implements IBookService {
@@ -41,7 +40,10 @@ public class BookService implements IBookService {
         bookRepository.findAll().forEach(book -> {
             GetBookResponse dto = new GetBookResponse();
             dto.setBookDto(BookMapper.INSTANCE.bookToBookDto(book));
+            dtos.add(dto);
         });
+
+        response.setBooks(dtos);
 
         return response;
     }
