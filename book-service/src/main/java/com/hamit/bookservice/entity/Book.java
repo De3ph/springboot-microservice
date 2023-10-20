@@ -1,13 +1,14 @@
 package com.hamit.bookservice.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.*;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
-import java.sql.Date;
 import java.sql.Timestamp;
-import java.util.UUID;
 
 @Entity
 @Table(name = "books")
@@ -17,12 +18,16 @@ import java.util.UUID;
 @Builder
 public class Book {
     @Id
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String title;
     private String author;
+    @Column(unique = true)
     private String isbn;
     private int pages;
     private Timestamp publishedAt;
+    @CreationTimestamp
     private Timestamp createdAt;
+    @UpdateTimestamp
     private Timestamp updatedAt;
 }

@@ -4,7 +4,6 @@ import com.hamit.bookservice.dto.BookDto;
 import com.hamit.bookservice.entity.Book;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -16,7 +15,7 @@ class BookMapperTest {
     public void shouldMapBookToBookDto() {
 
         Book book = Book.builder()
-                .id(UUID.randomUUID())
+                .id(1L)
                 .title("title")
                 .author("author")
                 .build();

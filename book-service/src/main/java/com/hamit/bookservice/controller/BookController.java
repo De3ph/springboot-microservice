@@ -1,27 +1,40 @@
 package com.hamit.bookservice.controller;
 
-import com.hamit.bookservice.dto.BookDto;
-import com.hamit.bookservice.entity.Book;
-import com.hamit.bookservice.mapper.BookMapper;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.UUID;
+import com.hamit.bookservice.dto.request.CreateBookRequest;
+import com.hamit.bookservice.dto.request.GetBookByIdRequest;
+import com.hamit.bookservice.dto.response.GetAllBooksResponse;
+import com.hamit.bookservice.dto.response.GetBookResponse;
+import com.hamit.bookservice.service.BookService;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 @RestController()
 @RequestMapping(value = "/books")
-public class BookController {
+@Validated
+public class BookController implements IBookController{
 
+    private final BookService bookService;
+
+    public BookController(BookService bookService) {
+        this.bookService = bookService;
+    }
+
+    @Override
     @GetMapping("/")
-    public BookDto getBook() {
+    public GetAllBooksResponse getAllBooks() {
+        return bookService.getAll();
+    }
 
-        BookDto bookDto = BookMapper.INSTANCE.bookToBookDto(
-                Book.builder()
-                        .id(UUID.randomUUID())
-                        .build());
+    @Override
+    @PostMapping("/book")
+    public GetBookResponse getBookById(@RequestBody GetBookByIdRequest request) {
+        GetBookResponse response = bookService.getBookById(request.getId());
+        return response;
+    }
 
-        return bookDto;
+    @Override
+    @PostMapping("/create")
+    public GetBookResponse createBook(@RequestBody CreateBookRequest request) {
+        return bookService.createBook(request);
     }
 }
