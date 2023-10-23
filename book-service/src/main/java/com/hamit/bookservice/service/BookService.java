@@ -5,6 +5,7 @@ import com.hamit.bookservice.dto.request.CreateBookRequest;
 import com.hamit.bookservice.dto.response.GetAllBooksResponse;
 import com.hamit.bookservice.dto.response.GetBookResponse;
 import com.hamit.bookservice.entity.Book;
+import com.hamit.bookservice.feign.OrderClient;
 import com.hamit.bookservice.mapper.BookMapper;
 import com.hamit.bookservice.repository.BookRepository;
 import org.springframework.stereotype.Service;
@@ -16,8 +17,11 @@ import java.util.List;
 public class BookService implements IBookService {
     private final BookRepository bookRepository;
 
-    public BookService(BookRepository bookRepository) {
+    private final OrderClient orderClient;
+
+    public BookService(BookRepository bookRepository, OrderClient orderClient) {
         this.bookRepository = bookRepository;
+        this.orderClient = orderClient;
     }
 
     @Override
@@ -56,5 +60,9 @@ public class BookService implements IBookService {
         response.setBookDto(dto);
 
         return response;
+    }
+
+    public String orderBookFromSeller() {
+        return orderClient.getBookName();
     }
 }

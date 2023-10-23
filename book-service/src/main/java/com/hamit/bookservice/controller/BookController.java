@@ -37,4 +37,9 @@ public class BookController implements IBookController{
     public GetBookResponse createBook(@RequestBody CreateBookRequest request) {
         return bookService.createBook(request);
     }
+
+    @GetMapping("/order")
+    public String orderBookFromSeller() {
+        return bookService.orderBookFromSeller();
+    }
 }

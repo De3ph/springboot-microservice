@@ -8,4 +8,6 @@ public interface IBookService {
     GetBookResponse getBookById(Long id);
     GetAllBooksResponse getAll();
     GetBookResponse createBook(CreateBookRequest request);
+
+//    OrderBookFromSellerResponse orderBookFromSeller(OrderBookFromSellerRequest request);
 }

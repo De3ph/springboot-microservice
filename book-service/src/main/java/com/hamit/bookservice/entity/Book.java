@@ -22,6 +22,7 @@ public class Book {
     private Long id;
     private String title;
     private String author;
+    private String publisher;
     @Column(unique = true)
     private String isbn;
     private int pages;
