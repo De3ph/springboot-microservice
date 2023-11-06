@@ -4,42 +4,44 @@ import com.hamit.bookservice.dto.request.CreateBookRequest;
 import com.hamit.bookservice.dto.request.GetBookByIdRequest;
 import com.hamit.bookservice.dto.response.GetAllBooksResponse;
 import com.hamit.bookservice.dto.response.GetBookResponse;
-import com.hamit.bookservice.service.BookService;
+import com.hamit.bookservice.service.BookServiceImpl;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController()
 @RequestMapping(value = "/books")
 @Validated
-public class BookController implements IBookController{
+public class BookController implements IBookController {
 
-    private final BookService bookService;
+    private final BookServiceImpl bookServiceImpl;
 
-    public BookController(BookService bookService) {
-        this.bookService = bookService;
+    public BookController(BookServiceImpl bookServiceImpl) {
+        this.bookServiceImpl = bookServiceImpl;
     }
 
     @Override
     @GetMapping("/")
-    public GetAllBooksResponse getAllBooks() {
-        return bookService.getAll();
+    public ResponseEntity<GetAllBooksResponse> getAllBooks() {
+        return new ResponseEntity<>(bookServiceImpl.getAll(), HttpStatus.OK);
     }
 
     @Override
     @PostMapping("/book")
-    public GetBookResponse getBookById(@RequestBody GetBookByIdRequest request) {
-        GetBookResponse response = bookService.getBookById(request.getId());
-        return response;
+    public ResponseEntity<GetBookResponse> getBookById(@RequestBody GetBookByIdRequest request) {
+        GetBookResponse response = bookServiceImpl.getBookById(request.getId());
+        return new ResponseEntity<>(response,HttpStatus.OK);
     }
 
     @Override
     @PostMapping("/create")
-    public GetBookResponse createBook(@RequestBody CreateBookRequest request) {
-        return bookService.createBook(request);
+    public ResponseEntity<GetBookResponse> createBook(@RequestBody CreateBookRequest request) {
+        return new ResponseEntity<>(bookServiceImpl.createBook(request), HttpStatus.OK);
     }
 
-    @GetMapping("/order")
-    public String orderBookFromSeller() {
-        return bookService.orderBookFromSeller();
-    }
+//    @GetMapping("/order")
+//    public String orderBookFromSeller() {
+//        return bookServiceImpl.orderBookFromSeller();
+//    }
 }

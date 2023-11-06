@@ -1,7 +1,7 @@
 package com.hamit.orderservice.mapper;
 
 import com.hamit.orderservice.dto.OrderDto;
-import com.hamit.orderservice.entity.Order;
+import com.hamit.orderservice.dao.model.Order;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

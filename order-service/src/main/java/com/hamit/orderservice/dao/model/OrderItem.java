@@ -1,4 +1,4 @@
-package com.hamit.orderservice.entity;
+package com.hamit.orderservice.dao.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -11,9 +11,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Builder
-public class Order {
+@Table(name = "ORDER_ITEM")
+public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "order_id", referencedColumnName = "id", nullable = false)
+    private Order order;
 }

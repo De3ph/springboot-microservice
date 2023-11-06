@@ -8,18 +8,19 @@ import com.hamit.bookservice.entity.Book;
 import com.hamit.bookservice.feign.OrderClient;
 import com.hamit.bookservice.mapper.BookMapper;
 import com.hamit.bookservice.repository.BookRepository;
+import com.hamit.bookservice.service.intf.BookService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class BookService implements IBookService {
+public class BookServiceImpl implements BookService {
     private final BookRepository bookRepository;
 
     private final OrderClient orderClient;
 
-    public BookService(BookRepository bookRepository, OrderClient orderClient) {
+    public BookServiceImpl(BookRepository bookRepository, OrderClient orderClient) {
         this.bookRepository = bookRepository;
         this.orderClient = orderClient;
     }
@@ -62,7 +63,4 @@ public class BookService implements IBookService {
         return response;
     }
 
-    public String orderBookFromSeller() {
-        return orderClient.getBookName();
-    }
 }

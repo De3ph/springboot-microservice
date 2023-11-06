@@ -1,10 +1,10 @@
-package com.hamit.orderservice;
+package com.hamit.bookservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class OrderServiceApplicationTests {
+class BookServiceImplApplicationTests {
 
 	@Test
 	void contextLoads() {
