@@ -15,6 +15,5 @@ import java.util.List;
 @Setter
 public class OrderDto {
     private List<OrderItem> orderItems;
-
     private Address address;
 }

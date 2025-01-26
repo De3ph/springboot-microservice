@@ -1,4 +1,6 @@
-package com.hamit.bookservice.dto.request;
+package com.hamit.bookservice.dto.response;
+
+import com.hamit.bookservice.dto.BookDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,6 +11,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class GetBookByIdRequest {
-    private Long id;
+public class ResponseGetBook {
+    BookDto dto;
 }

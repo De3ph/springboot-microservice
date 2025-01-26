@@ -1,19 +1,18 @@
-package com.hamit.orderservice.service;
+package com.hamit.bookservice.service.external.order;
 
-import java.util.List;
-
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.hamit.orderservice.dto.OrderDto;
-import com.hamit.orderservice.service.intf.OrderService;
+import com.hamit.bookservice.service.external.order.intf.OrderService;
 
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
+
     @Override
-    public List<OrderDto> getOrders() {
+    public ResponseEntity<String> getOrders() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getOrders'");
     }

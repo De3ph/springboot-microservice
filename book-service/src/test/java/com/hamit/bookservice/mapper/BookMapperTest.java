@@ -1,12 +1,13 @@
 package com.hamit.bookservice.mapper;
 
-import com.hamit.bookservice.dto.BookDto;
-import com.hamit.bookservice.entity.Book;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import com.hamit.bookservice.dao.entity.Book;
+import com.hamit.bookservice.dto.BookDto;
 
 @SpringBootTest
 class BookMapperTest {

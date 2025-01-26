@@ -1,4 +1,4 @@
-package com.hamit.orderservice.service.client;
+package com.hamit.bookservice.service.external.order.client;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;

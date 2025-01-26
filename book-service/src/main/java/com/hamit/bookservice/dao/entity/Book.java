@@ -1,14 +1,12 @@
-package com.hamit.bookservice.entity;
+package com.hamit.bookservice.dao.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "books")
@@ -26,9 +24,17 @@ public class Book {
     @Column(unique = true)
     private String isbn;
     private int pages;
-    private Timestamp publishedAt;
-    @CreationTimestamp
-    private Timestamp createdAt;
-    @UpdateTimestamp
-    private Timestamp updatedAt;
+    private LocalDateTime publishedAt;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+
+    @PrePersist
+    public void prePersist() {
+        this.createdAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        this.updatedAt = LocalDateTime.now();
+    }
 }

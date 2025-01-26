@@ -1,15 +1,19 @@
 package com.hamit.bookservice.dto.request;
+
 import jakarta.validation.constraints.NotEmpty;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class CreateBookRequest {
+public class RequestCreateBook {
     @NotEmpty(message = "Title cannot be empty")
     private String title;
     @NotEmpty(message = "Author cannot be empty")
@@ -20,5 +24,5 @@ public class CreateBookRequest {
     @NotEmpty(message = "Pages cannot be empty")
     private int pages;
     @NotEmpty(message = "PublishedAt cannot be empty")
-    private Timestamp publishedAt;
+    private LocalDateTime publishedAt;
 }
