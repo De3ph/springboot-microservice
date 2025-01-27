@@ -1,40 +1,31 @@
 package com.hamit.bookservice.dao.entity;
 
+import com.hamit.bookservice.dao.entity.base.CoreEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "books")
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
-@Builder
-public class Book {
+@Getter
+@Setter
+public class Book extends CoreEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
     private Long id;
+    @Column(name = "TITLE")
     private String title;
+    @Column(name = "AUTHOR")
     private String author;
+    @Column(name = "PUBLISHER")
     private String publisher;
-    @Column(unique = true)
+    @Column(name = "ISBN",unique = true)
     private String isbn;
-    private int pages;
+    @Column(name = "PAGES")
+    private Integer pages;
+    @Column(name = "PUBLISHED_AT")
     private LocalDateTime publishedAt;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
 
-    @PrePersist
-    public void prePersist() {
-        this.createdAt = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    public void preUpdate() {
-        this.updatedAt = LocalDateTime.now();
-    }
 }

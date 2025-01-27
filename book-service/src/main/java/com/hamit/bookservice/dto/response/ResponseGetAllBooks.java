@@ -2,6 +2,7 @@ package com.hamit.bookservice.dto.response;
 
 import java.util.List;
 
+import com.hamit.bookservice.dto.BookDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,5 +13,5 @@ import lombok.Setter;
 @Setter
 @Getter
 public class ResponseGetAllBooks {
-    List<ResponseGetBook> books;
+    List<BookDto> books;
 }
