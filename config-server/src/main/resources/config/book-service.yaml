@@ -6,7 +6,6 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
 
-# create mysql database connection
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/microtutorial
@@ -23,6 +22,10 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
+  redis:
+    host: localhost
+    port: 6379
+    ttlInMinutes: 3
 
 # zipkin
 management:

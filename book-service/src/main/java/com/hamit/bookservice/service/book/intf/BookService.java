@@ -1,14 +1,16 @@
 package com.hamit.bookservice.service.book.intf;
 
+import com.hamit.bookservice.dto.BookDto;
 import com.hamit.bookservice.dto.request.RequestCreateBook;
-import com.hamit.bookservice.dto.response.ResponseGetAllBooks;
-import com.hamit.bookservice.dto.response.ResponseGetBook;
+import com.hamit.bookservice.exception.BookNotFoundException;
+
+import java.util.List;
 
 public interface BookService {
-    ResponseGetBook getBookById(Long id);
+    BookDto getBookById(Long id) throws BookNotFoundException;
 
-    ResponseGetAllBooks getAll();
+    List<BookDto> getAll();
 
-    ResponseGetBook createBook(RequestCreateBook request);
+    BookDto createBook(RequestCreateBook request);
 
 }
