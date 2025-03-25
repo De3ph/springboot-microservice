@@ -2,6 +2,7 @@ package com.hamit.bookservice.service.book;
 
 import com.hamit.bookservice.dao.entity.Book;
 import com.hamit.bookservice.dao.repository.BookRepository;
+import com.hamit.bookservice.dto.BookCoverDto;
 import com.hamit.bookservice.dto.BookDto;
 import com.hamit.bookservice.dto.request.RequestCreateBook;
 import com.hamit.bookservice.exception.BookNotFoundException;
@@ -40,5 +41,9 @@ public class BookServiceImpl implements BookService {
     public BookDto createBook(RequestCreateBook request) {
         Book entity = mapper.createRequestToBook(request);
         return mapper.bookToBookDto(bookRepository.save(entity));
+    }
+
+    public BookCoverDto getBookCoverById(Long id) throws BookNotFoundException {
+        return bookRepository.findBookCoverDtoById(id);
     }
 }
