@@ -1,5 +1,6 @@
 package com.hamit.bookservice.controller;
 
+import com.hamit.bookservice.dto.BookCoverDto;
 import com.hamit.bookservice.dto.BookDto;
 import com.hamit.bookservice.dto.request.RequestCreateBook;
 import com.hamit.bookservice.dto.response.ResponseGetAllBooks;
@@ -32,6 +33,12 @@ public class BookController {
     public ResponseEntity<ResponseGetBook> getBookById(@PathVariable @NotNull Long id) {
         BookDto dto = bookServiceImpl.getBookById(id);
         return new ResponseEntity<>(new ResponseGetBook(dto), HttpStatus.OK);
+    }
+
+    @GetMapping("/cover/{id}")
+    public ResponseEntity<BookCoverDto> getBookCoverById(@PathVariable @NotNull Long id) {
+        BookCoverDto coverDto = bookServiceImpl.getBookCoverById(id);
+        return new ResponseEntity<>(coverDto, HttpStatus.OK);
     }
 
     @PostMapping
