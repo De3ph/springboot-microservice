@@ -29,3 +29,10 @@ management:
   tracing:
     sampling:
       probability: 1.0
+
+kafka:
+  bootstrap-servers: localhost:9092
+  group-id: order-group-1
+
+switch:
+  kafka: true

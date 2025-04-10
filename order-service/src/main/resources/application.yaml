@@ -4,3 +4,11 @@ spring:
 
   config:
     import: "configserver:http://localhost:8088"
+    
+    
+  kafka:
+    bootstrap-servers: localhost:9092
+    group-id: order-service-group
+  
+switch:
+  kafka: true
