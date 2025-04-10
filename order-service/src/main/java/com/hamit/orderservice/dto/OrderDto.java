@@ -1,19 +1,22 @@
 package com.hamit.orderservice.dto;
 
-import com.hamit.orderservice.dao.model.Address;
-import com.hamit.orderservice.dao.model.OrderItem;
+import java.time.LocalDateTime;
+import java.util.List;
+
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
+@Builder
 public class OrderDto {
-    private List<OrderItem> orderItems;
-    private Address address;
+    private Long id;
+    private List<OrderItemDto> orderItems;
+    private AddressDto address;
+    private LocalDateTime createdAt;
 }
