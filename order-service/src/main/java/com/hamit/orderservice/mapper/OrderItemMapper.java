@@ -11,9 +11,11 @@ import com.hamit.orderservice.dto.OrderItemDto;
 public interface OrderItemMapper {
     OrderItemMapper INSTANCE = Mappers.getMapper(OrderItemMapper.class);
     
-    @Mapping(target = "order", ignore = true) // Prevent circular references
+    @Mapping(target = "price", source = "price")
+    @Mapping(target = "productName", source = "productName")
+    @Mapping(target = "quantity", source = "quantity")
     OrderItemDto orderItemToOrderItemDto(OrderItem orderItem);
     
-    @Mapping(target = "order", ignore = true) // Prevent circular references
+    @Mapping(target = "order", ignore = true)
     OrderItem orderItemDtoToOrderItem(OrderItemDto orderItemDto);
 }

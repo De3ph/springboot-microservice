@@ -1,0 +1,40 @@
+server:
+  port: 8082
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://micro-tutorial-service-discovery:8761/eureka/
+
+spring:
+  datasource:
+    url: jdbc:postgresql://micro-tutorial-postgres:5432/microtutorial
+    username: postgres
+    password: 123456
+    hikari:
+      schema: book
+  jpa:
+    database: postgresql
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+  redis:
+    host: micro-tutorial-redis
+    port: 6379
+    ttlInMinutes: 3
+
+# zipkin
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+  zipkin:
+    tracing:
+      endpoint: http://micro-tutorial-zipkin:9411/api/v2/spans
+
+switch:
+  redis: false 

@@ -42,16 +42,16 @@ Service：
 6. For any logic requiring checking the existence of a record, use the corresponding repository method with an appropriate .orElseThrow lambda method.
 7. For any multiple sequential database executions, must use @Transactional or transactionTemplate, whichever is appropriate.
 
-Data Transfer object (DTo)：
+Data Transfer object (DTO)：
 1. Must be of type record, unless specified in a prompt otherwise.
-2. Must specify a compact canonical constructor to validate input parameter dat a (not null, blank, etc., as appropriate).
+2. Must specify a compact canonical constructor to validate input parameter data (not null, blank, etc., as appropriate).
 
 RestController:
 1. Must annotate controller classes with @RestController.
 2. Must specify class-level API routes with @RequestMapping, e.g. ("/api/user").
 3. Class methods must use best practice HTTP method annotations, e.g, create = @postMapping("/create"), etc.
 4. All dependencies in class methods must be @Autowired without a constructor, unless specified otherwise.
-5. Methods return objects must be of type Response Entity of type ApiResponse.
+5. Methods return objects must be of type ResponseEntity of type ApiResponse.
 6. All class method logic must be implemented in a try..catch block(s).
 7. Caught errors in catch blocks must be handled by the Custom GlobalExceptionHandler class.
 

@@ -1,0 +1,41 @@
+server:
+  port: 8083
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://micro-tutorial-service-discovery:8761/eureka/
+
+# create postgresql database connection
+spring:
+  datasource:
+    url: jdbc:postgresql://micro-tutorial-postgres:5432/microtutorial
+    username: postgres
+    password: 123456
+    hikari:
+      schema: order
+  jpa:
+    database: postgresql
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+
+# zipkin
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+  zipkin:
+    tracing:
+      endpoint: http://micro-tutorial-zipkin:9411/api/v2/spans
+
+kafka:
+  bootstrap-servers: micro-tutorial-kafka:29092
+  group-id: order-group-1
+
+switch:
+  kafka: true 

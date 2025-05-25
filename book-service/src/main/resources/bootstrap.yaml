@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: book-service
+  cloud:
+    config:
+      uri: ${CONFIG_SERVER_URL:http://localhost:8088}
+      retry:
+        initial-interval: 3000
+        max-interval: 4000
+        max-attempts: 20
+        enabled: true
+      fail-fast: false
+      enabled: true 
