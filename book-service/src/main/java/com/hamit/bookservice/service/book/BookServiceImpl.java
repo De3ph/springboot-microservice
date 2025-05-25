@@ -1,5 +1,12 @@
 package com.hamit.bookservice.service.book;
 
+import java.util.List;
+
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Service;
+
 import com.hamit.bookservice.dao.entity.Book;
 import com.hamit.bookservice.dao.repository.BookRepository;
 import com.hamit.bookservice.dto.BookCoverDto;
@@ -8,12 +15,8 @@ import com.hamit.bookservice.dto.request.RequestCreateBook;
 import com.hamit.bookservice.exception.BookNotFoundException;
 import com.hamit.bookservice.mapper.BookMapper;
 import com.hamit.bookservice.service.book.intf.BookService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.stereotype.Service;
 
-import java.util.List;
+import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
@@ -37,6 +40,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @CachePut(cacheNames = "book", key = "#result.id")
+    @CacheEvict(cacheNames = "book", allEntries = true)
     @Override
     public BookDto createBook(RequestCreateBook request) {
         Book entity = mapper.createRequestToBook(request);

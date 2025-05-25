@@ -1,10 +1,16 @@
 package com.hamit.orderservice.service.intf;
 
-import com.hamit.orderservice.dao.model.Order;
+import java.util.Optional;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.hamit.orderservice.dto.OrderDto;
 
-import java.util.List;
-
 public interface OrderService {
-    List<OrderDto> getOrders();
+    Page<OrderDto> getOrders(Pageable pageable);
+    Optional<OrderDto> getOrderById(Long id);
+    OrderDto createOrder(OrderDto orderDto);
+    OrderDto updateOrder(Long id, OrderDto orderDto);
+    void deleteOrder(Long id);
 }

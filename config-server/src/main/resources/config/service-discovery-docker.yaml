@@ -1,0 +1,20 @@
+server:
+  port: 8761
+
+eureka:
+  instance:
+    hostname: micro-tutorial-service-discovery
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
+# zipkin
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+  zipkin:
+    tracing:
+      endpoint: http://micro-tutorial-zipkin:9411/api/v2/spans 

@@ -1,19 +1,18 @@
 server:
-  port: 8083
+  port: 8082
 
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://micro-tutorial-service-discovery:8761/eureka/
 
-# create mysql database connection
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/microtutorial
+    url: jdbc:postgresql://micro-tutorial-postgres:5432/microtutorial
     username: postgres
     password: 123456
     hikari:
-      schema: order
+      schema: book
   jpa:
     database: postgresql
     show-sql: true
@@ -23,16 +22,19 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
+  redis:
+    host: micro-tutorial-redis
+    port: 6379
+    ttlInMinutes: 3
 
 # zipkin
 management:
   tracing:
     sampling:
       probability: 1.0
-
-kafka:
-  bootstrap-servers: localhost:9092
-  group-id: order-group-1
+  zipkin:
+    tracing:
+      endpoint: http://micro-tutorial-zipkin:9411/api/v2/spans
 
 switch:
-  kafka: true
+  redis: false 
